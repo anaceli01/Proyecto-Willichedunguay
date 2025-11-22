@@ -1,5 +1,6 @@
 import pygame as pg
 import os
+from settings import GREEN, LIGHT_GREEN
 
 
 class Menu:
@@ -26,8 +27,8 @@ class Menu:
         self.button_start.center = (width // 2, height // 2 + 40)
 
         #DEFINIR COLORES DEL BOTÓN
-        self.button_color = (0, 85, 80) #ESTADO NORMAL
-        self.button_color_hover = (0, 120, 110) #CUANDO SE PASA EL PUNTERO
+        self.button_color = GREEN #ESTADO NORMAL
+        self.button_color_hover = LIGHT_GREEN #CUANDO SE PASA EL PUNTERO
 
     #FUNCIÓN PARA CAMBIAR DE ESTADO AL PRESIONAR EL BOTÓN
     def handle_event(self, event):

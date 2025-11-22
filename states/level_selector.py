@@ -1,5 +1,6 @@
 import pygame as pg
 import os
+from settings import BLACK, WHITE, BROWN, DARK_BROWN, GREEN, LIGHT_GREEN
 
 
 class LevelSelector:
@@ -29,8 +30,8 @@ class LevelSelector:
         self.button_back_rect = pg.Rect(105, 125, 40, 30)
 
         #DEFINIR COLORES DEL BOTÓN PARA RETROCEDER
-        self.button_back_color = (2, 147, 22) #ESTADO NORMAL
-        self.button_back_color_hover = (1, 112, 16) #CUANDO SE PASA EL PUNTERO
+        self.button_back_color = GREEN #ESTADO NORMAL
+        self.button_back_color_hover = LIGHT_GREEN #CUANDO SE PASA EL PUNTERO
 
 
         '''-----BOTÓN DE LOS NIVELES-----'''
@@ -45,8 +46,8 @@ class LevelSelector:
         self.button_advanced = pg.Rect(580, 250, 180, 65) # (x, y, ancho, alto)
 
         #DEFINIR COLORES DEL BOTÓN
-        self.button_level_color = (125, 79, 2)
-        self.button_lever_color_hover = (97, 61, 1)
+        self.button_level_color = BROWN
+        self.button_lever_color_hover = DARK_BROWN
 
 
     #FUNCIÓN PARA VOLVER AL MENÚ AL PRESIONAR EL BOTÓN DE RETROCEDER
@@ -76,7 +77,7 @@ class LevelSelector:
         screen.blit(self.background, (0, 0))
 
         #TÍTULO
-        title_surface = self.font_title.render("NIVEL", True, (0, 0, 0))
+        title_surface = self.font_title.render("NIVEL", True, BLACK)
         title_rect = title_surface.get_rect(center=(self.width // 2, self.height // 2 - 40))
         screen.blit(title_surface, title_rect)
 
@@ -92,7 +93,7 @@ class LevelSelector:
         pg.draw.ellipse(screen, level_color_beginner, self.button_beginner)
 
         #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
-        button_text_beginner = self.font_button.render("PRINCIPIANTE", True, (255, 255, 255))
+        button_text_beginner = self.font_button.render("PRINCIPIANTE", True, WHITE)
         button_text_beginner_rect = button_text_beginner.get_rect(center=self.button_beginner.center)
         screen.blit(button_text_beginner, button_text_beginner_rect)
 
@@ -100,8 +101,8 @@ class LevelSelector:
         level_color_intermediate = self.button_lever_color_hover if self.button_intermediate.collidepoint(mouse_pos) else self.button_level_color
         pg.draw.ellipse(screen, level_color_intermediate, self.button_intermediate)
 
-        #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
-        button_text_intermediate = self.font_button.render("INTERMEDIO", True, (255, 255, 255))
+        #TEXTO DEL BOTÓN NIVEL INTERMEDIO
+        button_text_intermediate = self.font_button.render("INTERMEDIO", True, WHITE)
         button_text_intermediate_rect = button_text_intermediate.get_rect(center=self.button_intermediate.center)
         screen.blit(button_text_intermediate, button_text_intermediate_rect)
 
@@ -109,8 +110,8 @@ class LevelSelector:
         level_color_advanced = self.button_lever_color_hover if self.button_advanced.collidepoint(mouse_pos) else self.button_level_color
         pg.draw.ellipse(screen, level_color_advanced, self.button_advanced)
 
-        #TEXTO DEL BOTÓN NIVEL PRINCIPIANTE
-        button_text_advanced = self.font_button.render("AVANZADO", True, (255, 255, 255))
+        #TEXTO DEL BOTÓN NIVEL AVANZADO
+        button_text_advanced = self.font_button.render("AVANZADO", True, WHITE)
         button_text_advanced_rect = button_text_advanced.get_rect(center=self.button_advanced.center)
         screen.blit(button_text_advanced, button_text_advanced_rect)
 
