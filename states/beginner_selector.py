@@ -11,9 +11,14 @@ class BeginnerSelector:
 
         #CARGAR FONDO
         base_path = os.path.dirname(os.path.dirname(__file__))  # sube desde /states/
-        bg_path = os.path.join(base_path, "assets", "images", "background_beginner.png")
-        self.background = pg.image.load(bg_path).convert()
+        bg_path1 = os.path.join(base_path, "assets", "images", "background_beginner.png")
+        self.background = pg.image.load(bg_path1).convert()
         self.background = pg.transform.scale(self.background, (width, height)) #AJUSTA LA IMAGEN AL TAMAÑO DE LA VENTANA
+
+        #CARGAR SPRITE DEL CANDADO
+        bg_path2 = os.path.join(base_path, "assets", "sprites", "candado.png")
+        self.candado = pg.image.load(bg_path2).convert_alpha()
+
 
         #CARGAR LA TIPOGRAFÍA PIXEL
         font_path = os.path.join(base_path, "assets", "fonts", "FontPixel.ttf")
@@ -59,7 +64,7 @@ class BeginnerSelector:
 
             #FUNCIÓN PARA IR AL NIVEL PRINCIPIANTE
             if self.button_beginner.collidepoint(event.pos):
-                print('Botón para el nivel 1')
+                self.change_state("beginner_level_1")
 
             #FUNCIÓN PARA IR AL NIVEL INTERMEDIO
             if self.button_intermediate.collidepoint(event.pos):
@@ -105,9 +110,8 @@ class BeginnerSelector:
         pg.draw.rect(screen, level_color_intermediate, self.button_intermediate, border_radius=12)
 
         #TEXTO DEL BOTÓN NIVEL 2
-        button_text_intermediate = self.font_button.render("NIVEL 2", True, BLACK)
-        button_text_intermediate_rect = button_text_intermediate.get_rect(center=self.button_intermediate.center)
-        screen.blit(button_text_intermediate, button_text_intermediate_rect)
+        candado2_rect = self.candado.get_rect(center=self.button_intermediate.center)
+        screen.blit(self.candado, candado2_rect)
 
         #BOTÓN PARA SELECCIONAR NIVEL 3
         level_color_advanced = self.button_level_color_hover if self.button_advanced.collidepoint(mouse_pos) else self.button_level_color

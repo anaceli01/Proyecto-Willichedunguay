@@ -3,6 +3,8 @@ from settings import WIDTH, HEIGHT
 from states.menu import Menu
 from states.level_selector import LevelSelector
 from states.beginner_selector import BeginnerSelector
+# AÑADIR LA NUEVA IMPORTACIÓN
+from states.beginner_level_1 import BeginnerLevel1
 
 class Game():
     def __init__(self):
@@ -13,7 +15,7 @@ class Game():
 
         self.current_state = None
 
-    #Esta función será enviada a los estados
+    # Esta función será enviada a los estados
     def change_state(self, to):
         if to == "menu":
             self.current_state = Menu(WIDTH, HEIGHT, self.change_state)
@@ -21,6 +23,10 @@ class Game():
             self.current_state = LevelSelector(WIDTH, HEIGHT, self.change_state)
         elif to == 'beginner_selector':
             self.current_state = BeginnerSelector(WIDTH, HEIGHT, self.change_state)
+        # AÑADIR LA LÓGICA PARA EL NUEVO NIVEL
+        elif to == 'beginner_level_1':
+            self.current_state = BeginnerLevel1(WIDTH, HEIGHT, self.change_state)
+        # ... otros niveles irán aquí ...
 
 
     def run(self):
@@ -40,5 +46,3 @@ class Game():
             self.clock.tick(60)
 
         pg.quit()
-
-
