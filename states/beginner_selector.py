@@ -18,6 +18,7 @@ class BeginnerSelector:
         #CARGAR SPRITE DEL CANDADO
         bg_path2 = os.path.join(base_path, "assets", "sprites", "candado.png")
         self.candado = pg.image.load(bg_path2).convert_alpha()
+        self.candado_pequeno = pg.transform.scale(self.candado, (65, 65))
 
 
         #CARGAR LA TIPOGRAFÍA PIXEL
@@ -109,21 +110,16 @@ class BeginnerSelector:
         level_color_intermediate = self.button_level_color_hover if self.button_intermediate.collidepoint(mouse_pos) else self.button_level_color
         pg.draw.rect(screen, level_color_intermediate, self.button_intermediate, border_radius=12)
 
-        #TEXTO DEL BOTÓN NIVEL 2
-        candado2_rect = self.candado.get_rect(center=self.button_intermediate.center)
-        screen.blit(self.candado, candado2_rect)
+        #CANDADO DEL BOTÓN NIVEL 2
+        candado2_rect = self.candado_pequeno.get_rect(center=self.button_intermediate.center)
+        screen.blit(self.candado_pequeno, candado2_rect)
 
         #BOTÓN PARA SELECCIONAR NIVEL 3
         level_color_advanced = self.button_level_color_hover if self.button_advanced.collidepoint(mouse_pos) else self.button_level_color
         pg.draw.rect(screen, level_color_advanced, self.button_advanced, border_radius=12)
 
-        #TEXTO DEL BOTÓN NIVEL 3
-        button_text_advanced1 = self.font_button.render("NIVEL", True, BLACK)
-        button_text_advanced2 = self.font_button.render("3", True, BLACK)
-        button_text_advanced_rect1 = button_text_advanced1.get_rect(center=(self.button_advanced.centerx, self.button_advanced.centery -10)) #SUBE 10 DESDE EL CENTRO EN Y
-        button_text_advanced_rect2 = button_text_advanced2.get_rect(center=(self.button_advanced.centerx, self.button_advanced.centery +15)) #BAJA 15 DESDE EL CENTRO EN Y
-        screen.blit(button_text_advanced1, button_text_advanced_rect1)
-        screen.blit(button_text_advanced2, button_text_advanced_rect2)
-
+        #CANDADO DEL BOTÓN NIVEL 2
+        candado3_rect = self.candado_pequeno.get_rect(center=self.button_advanced.center)
+        screen.blit(self.candado_pequeno, candado3_rect)
 
         
