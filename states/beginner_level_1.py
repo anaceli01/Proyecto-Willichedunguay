@@ -30,8 +30,8 @@ class BeginnerLevel1:
         self.questions = [
             {"pregunta": "MADRE", "respuesta": "ÑUKE"},
             {"pregunta": "PADRE", "respuesta": "CHACHA"},
-            {"pregunta": "SOL", "respuesta": "ANTÜ"},
-            {"pregunta": "LUNA", "respuesta": "KÜYEN"},
+            {"pregunta": "HERMANO", "respuesta": "PEÑI"},
+            {"pregunta": "HERMANA", "respuesta": "SEIYA"},
             # Agrega más preguntas aquí
         ]
         self.current_question_index = 0
