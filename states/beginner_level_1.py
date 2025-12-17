@@ -53,6 +53,12 @@ class BeginnerLevel1:
         self.button_back_color = GREEN #ESTADO NORMAL
         self.button_back_color_hover = LIGHT_GREEN #CUANDO SE PASA EL PUNTERO
 
+        #CARGAR SPRITE DEL CORAZON
+        bg_path2 = os.path.join(base_path, "assets", "sprites", "corazon.png")
+        self.candado = pg.image.load(bg_path2).convert_alpha()
+        self.candado_pequeno = pg.transform.scale(self.candado, (65, 65))
+
+
 
     def load_question(self):
         """Carga la pregunta actual y mezcla las opciones."""

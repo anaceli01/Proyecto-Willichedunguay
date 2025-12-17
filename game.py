@@ -9,10 +9,13 @@ from states.beginner_level_1 import BeginnerLevel1
 class Game():
     def __init__(self):
         pg.init()
+        pg.mixer.init()
         pg.display.set_caption("Kimün")
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
         self.clock = pg.time.Clock()
-
+        pg.mixer.music.load('assets/sounds/musica.mp3')
+        pg.mixer.music.play(-1)
+        
         self.current_state = None
 
     # Esta función será enviada a los estados
