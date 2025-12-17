@@ -55,8 +55,8 @@ class BeginnerLevel1:
 
         #CARGAR SPRITE DEL CORAZON
         bg_path2 = os.path.join(base_path, "assets", "sprites", "corazon.png")
-        self.candado = pg.image.load(bg_path2).convert_alpha()
-        self.candado_pequeno = pg.transform.scale(self.candado, (65, 65))
+        self.c = pg.image.load(bg_path2).convert_alpha() #LA FUNCIÓN convert_alpha LE DA TRANSPARENCIA AL SPRITE
+        self.corazon = pg.transform.scale(self.c, (30, 30))
 
 
 
@@ -191,8 +191,11 @@ class BeginnerLevel1:
         title_tema = self.font_title2.render("FAMILIA/REÑMA", True, BLACK)
         screen.blit(title_tema, (self.width // 2 - title_tema.get_width() // 2, 80))
 
-        lives_text = self.font_text.render(f"VIDAS: {'❤️' * max(0, self.lives)}", True, DARK_BROWN)
-        screen.blit(lives_text, (self.width - lives_text.get_width() - 50, 50))
+        #vidas
+        for i in range(self.lives):
+            x = self.width - (i + 1) * (self.corazon.get_width() + 10) - 20
+            y = 60
+            screen.blit(self.corazon, (x, y))
 
         #BOTÓN DE RETROCEDER
         mouse_pos = pg.mouse.get_pos()
