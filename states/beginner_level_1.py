@@ -23,6 +23,7 @@ class BeginnerLevel1:
         #CARGAR TIPOGRAFÍA
         font_path = os.path.join(base_path, "assets", "fonts", "FontPixel.ttf")
         self.font_title = pg.font.Font(font_path, 25)
+        self.font_title2 = pg.font.Font(font_path, 15)
         self.font_text = pg.font.Font(font_path, 20)
         self.font_button = pg.font.Font(font_path, 15)
        
@@ -175,9 +176,15 @@ class BeginnerLevel1:
         screen.blit(self.background, (0, 0))
 
         # 2. TÍTULO Y VIDAS
-        title_surface = self.font_title.render("Nivel 1: Principiante", True, BLACK)
-        screen.blit(title_surface, (self.width // 2 - title_surface.get_width() // 2, 50))
+        title_principiante = self.font_title2.render("PRINCIPIANTE", True, BLACK)
+        screen.blit(title_principiante, (self.width // 2 - title_principiante.get_width() // 2, 30))
        
+        title_nivel1 = self.font_title.render("NIVEL 1", True, BLACK)
+        screen.blit(title_nivel1, (self.width // 2 - title_nivel1.get_width() // 2, 50))
+
+        title_tema = self.font_title2.render("FAMILIA/REÑMA", True, BLACK)
+        screen.blit(title_tema, (self.width // 2 - title_tema.get_width() // 2, 80))
+
         lives_text = self.font_text.render(f"VIDAS: {'❤️' * max(0, self.lives)}", True, DARK_BROWN)
         screen.blit(lives_text, (self.width - lives_text.get_width() - 50, 50))
 
