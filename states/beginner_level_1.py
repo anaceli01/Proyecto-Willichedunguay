@@ -1,7 +1,7 @@
 import pygame as pg
 import os
 import random
-from settings import BLACK, WHITE, GREEN, LIGHT_GREEN, BROWN, DARK_BROWN
+from settings import BLACK, WHITE, GREEN, LIGHT_GREEN, BROWN, DARK_BROWN, RED
 
 # --- CLASE PRINCIPAL ---
 class BeginnerLevel1:
@@ -11,7 +11,7 @@ class BeginnerLevel1:
         self.change_state = change_state
         self.lives = lives
         self.game_over = False
-
+        
 
         
         # 1. CARGA DE ASSETS Y TIPOGRAFÍA
@@ -58,7 +58,9 @@ class BeginnerLevel1:
         self.c = pg.image.load(bg_path2).convert_alpha() #LA FUNCIÓN convert_alpha LE DA TRANSPARENCIA AL SPRITE
         self.corazon = pg.transform.scale(self.c, (30, 30))
 
-
+        # 4. TEMPORIZADOR
+        self.time_limit = 360  #DEFINE EL LÍMITE EN SEGUNDOS (6 MINUTOS)
+        self.start_time = pg.time.get_ticks() #FUNCIÓN PARA RELOJ
 
     def load_question(self):
         """Carga la pregunta actual y mezcla las opciones."""
@@ -174,8 +176,17 @@ class BeginnerLevel1:
                 # Aquí podrías cambiar a una pantalla de Game Over
                 # self.change_state("game_over")
 
+    def time(self):
+        elapsed = (pg.time.get_ticks() - self.start_time) // 1000
+        self.time_left = max(0, self.time_limit - elapsed)
+
+        if self.time_left == 0:
+            self.game_over = True
+
     def update(self):
-        pass
+        if not self.game_over:
+            self.time()
+
 
     def draw(self, screen):
         # 1. FONDO
@@ -239,3 +250,17 @@ class BeginnerLevel1:
             option_surface = self.font_button.render(self.dragging["text"], True, WHITE)
             option_rect = option_surface.get_rect(center=self.dragging["rect"].center)
             screen.blit(option_surface, option_rect)
+
+        #TEMPORIZADOR
+        minutes = self.time_left // 60 #DIVISIÓN ENTERA (minutos)
+        seconds = self.time_left % 60 #RESTO (segundos)
+
+        timer_text = self.font_text.render(f"{minutes:02d}:{seconds:02d}", True, BLACK)
+        screen.blit(timer_text, (765, 20))
+
+        #ARROJA EL TEXTO DE GAME OVER
+        if self.game_over:
+            game_over_text = self.font_title.render("GAME OVER", True, RED)
+            text_rect = game_over_text.get_rect(center=(self.width // 2, self.height // 2))
+            screen.blit(game_over_text, text_rect)
+            
